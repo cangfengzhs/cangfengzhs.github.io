@@ -19,25 +19,25 @@
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-    <meta name="description" content="万字长文：事务隔离级别不完全总结事务在数据库中扮演着重要角色。然而，SQL 标准中对事务隔离级别的定义却非常模糊且不完整。本文将基于几篇论文的内容，对隔离级别进行系统性的整理，提供清晰且准确的定义。 本文将按顺序介绍以下内容  SQL标准中的隔离级别 快照隔离 严格可串行化 其他隔离级别   SQL 标准中的隔离级别定义SQL标准中用自然语言定义了以下三种现象：  脏读（Dirty Read）：事">
+    <meta name="description" content="事务在数据库中扮演着重要角色。然而，SQL 标准中对事务隔离级别的定义却非常模糊且不完整。本文将基于几篇论文的内容，对隔离级别进行系统性的整理，提供清晰且准确的定义。 本文将按顺序介绍以下内容:  SQL标准中的隔离级别 快照隔离 严格可串行化 其他隔离级别   SQL 标准中的隔离级别定义SQL标准中用自然语言定义了以下三种现象：  脏读（Dirty Read）：事务 T1 修改了数据项 x，另">
 <meta property="og:type" content="article">
-<meta property="og:title" content="transaction-isolation-level">
+<meta property="og:title" content="万字长文：事务隔离级别不完全总结">
 <meta property="og:url" content="http://example.com/2025/07/13/transaction-isolation-level/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="万字长文：事务隔离级别不完全总结事务在数据库中扮演着重要角色。然而，SQL 标准中对事务隔离级别的定义却非常模糊且不完整。本文将基于几篇论文的内容，对隔离级别进行系统性的整理，提供清晰且准确的定义。 本文将按顺序介绍以下内容  SQL标准中的隔离级别 快照隔离 严格可串行化 其他隔离级别   SQL 标准中的隔离级别定义SQL标准中用自然语言定义了以下三种现象：  脏读（Dirty Read）：事">
+<meta property="og:description" content="事务在数据库中扮演着重要角色。然而，SQL 标准中对事务隔离级别的定义却非常模糊且不完整。本文将基于几篇论文的内容，对隔离级别进行系统性的整理，提供清晰且准确的定义。 本文将按顺序介绍以下内容:  SQL标准中的隔离级别 快照隔离 严格可串行化 其他隔离级别   SQL 标准中的隔离级别定义SQL标准中用自然语言定义了以下三种现象：  脏读（Dirty Read）：事务 T1 修改了数据项 x，另">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/images/1.png">
 <meta property="og:image" content="http://example.com/images/2.png">
 <meta property="og:image" content="https://fastly.jsdelivr.net/gh/bucketio/img7@main/2025/06/21/1750515220541-c71bd642-de32-4cc7-b3da-fb21c6def90f.png">
 <meta property="article:published_time" content="2025-07-13T15:15:54.000Z">
-<meta property="article:modified_time" content="2025-07-17T07:11:59.487Z">
+<meta property="article:modified_time" content="2025-07-17T09:21:16.440Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="http://example.com/images/1.png">
   
   
   
-  <title>transaction-isolation-level - Hexo</title>
+  <title>万字长文：事务隔离级别不完全总结 - Hexo</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -75,7 +75,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0,"number":true,"expand":true,"style":"normal"},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -203,7 +203,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="transaction-isolation-level"></span>
+            <span id="subtitle" data-typed-text="万字长文：事务隔离级别不完全总结"></span>
           
         </div>
 
@@ -226,7 +226,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          9.3k 字
+          8.2k 字
         
       </span>
     
@@ -237,7 +237,7 @@
         
         
         
-          78 分钟
+          69 分钟
         
       </span>
     
@@ -274,13 +274,13 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">transaction-isolation-level</h1>
+            <h1 id="seo-header">万字长文：事务隔离级别不完全总结</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="万字长文：事务隔离级别不完全总结"><a href="#万字长文：事务隔离级别不完全总结" class="headerlink" title="万字长文：事务隔离级别不完全总结"></a>万字长文：事务隔离级别不完全总结</h1><p>事务在数据库中扮演着重要角色。然而，SQL 标准中对事务隔离级别的定义却非常模糊且不完整。本文将基于几篇论文的内容，对隔离级别进行系统性的整理，提供清晰且准确的定义。</p>
-<p>本文将按顺序介绍以下内容</p>
+                <p>事务在数据库中扮演着重要角色。然而，SQL 标准中对事务隔离级别的定义却非常模糊且不完整。本文将基于几篇论文的内容，对隔离级别进行系统性的整理，提供清晰且准确的定义。</p>
+<p>本文将按顺序介绍以下内容:</p>
 <ol>
 <li>SQL标准中的隔离级别</li>
 <li>快照隔离</li>
@@ -288,7 +288,7 @@
 <li>其他隔离级别</li>
 </ol>
 <hr>
-<h2 id="SQL-标准中的隔离级别"><a href="#SQL-标准中的隔离级别" class="headerlink" title="SQL 标准中的隔离级别"></a>SQL 标准中的隔离级别</h2><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>SQL标准中用自然语言定义了以下三种现象：</p>
+<h1 id="SQL-标准中的隔离级别"><a href="#SQL-标准中的隔离级别" class="headerlink" title="SQL 标准中的隔离级别"></a>SQL 标准中的隔离级别</h1><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>SQL标准中用自然语言定义了以下三种现象：</p>
 <ul>
 <li><strong>脏读（Dirty Read）</strong>：事务 T1 修改了数据项 x，另一个事务 T2 在 T1 提交或中止之前读取了 x。如果 T1 随后中止，那么 T2 读取的就是一个从未提交、因此也从未实际存在过的数据项。</li>
 <li><strong>不可重复读（Non-repeatable Read）</strong>：事务 T1 读取了数据项 x，随后事务 T2 修改或删除了 x 并提交。如果 T1 之后尝试重新读取 x，它将获得修改后的值，或者发现该数据项已被删除。</li>
@@ -333,7 +333,7 @@
 </tr>
 </tbody></table>
 <hr>
-<h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><p>但是，上面这种定义方式是不严谨的，甚至是错误的。这种隔离级别的划分方式存在很多问题，比如：</p>
+<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>但是，上面这种定义方式是不严谨的，甚至是错误的。这种隔离级别的划分方式存在很多问题，比如：</p>
 <ul>
 <li><p>Percolator 实现的是快照隔离（Snapshot-Isolation），它并不在上面四种隔离级别的范围内。</p>
 </li>
@@ -357,19 +357,19 @@
 </ul>
 <p>因此，我们需要对隔离级别进行准确的定义。</p>
 <hr>
-<h2 id="《A-Critique-of-SQL-92-Isolation-level》"><a href="#《A-Critique-of-SQL-92-Isolation-level》" class="headerlink" title="《A Critique of SQL-92 Isolation level》"></a>《A Critique of SQL-92 Isolation level》</h2><p>这篇文章（下文简称《Critique》）分析了SQL标准中隔离级别的定义，并证明了其中存在的一些问题：一些定义不明确，一些定义完全缺失。</p>
+<h1 id="《A-Critique-of-SQL-92-Isolation-level》"><a href="#《A-Critique-of-SQL-92-Isolation-level》" class="headerlink" title="《A Critique of SQL-92 Isolation level》"></a>《A Critique of SQL-92 Isolation level》</h1><p>这篇文章（下文简称《Critique》）分析了SQL标准中隔离级别的定义，并证明了其中存在的一些问题：一些定义不明确，一些定义完全缺失。</p>
 <p>《Critique》表明，SQL标准隔离级别至少存在两种解释：</p>
 <ol>
 <li><strong>异常解释（anomaly interpretation）</strong>：严格遵循自然语言描述中出现的异常进行解释</li>
 <li><strong>预防性解释（reventative interpretation）</strong>：禁止所有可能导致异常的现象，避免异常出现</li>
 </ol>
 <p>下面会围绕这两种解释，介绍《Critique》文章涉及的内容。</p>
-<h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><ol>
+<h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><ol>
 <li><strong>事务（Transaction）</strong>：事务是一组操作，它们将数据库从一个状态转换为另一个状态。</li>
 <li><strong>History（找不到合适的词，不做翻译）</strong>：History将多个事务的执行过程建模为其操作的线性顺序，例如，特定数据项 Item 的读取、写入、更新或删除。Item 可以视为一行数据或一个 &lt;key, value&gt;对。</li>
 </ol>
 <hr>
-<h3 id="SQL-Isolation-level"><a href="#SQL-Isolation-level" class="headerlink" title="SQL Isolation level"></a>SQL Isolation level</h3><p>有了上面的概念之后，再回过头来看一下 SQL 标准中对隔离级别的定义。</p>
+<h2 id="SQL-Isolation-level"><a href="#SQL-Isolation-level" class="headerlink" title="SQL Isolation level"></a>SQL Isolation level</h2><p>有了上面的概念之后，再回过头来看一下 SQL 标准中对隔离级别的定义。</p>
 <p>首先，对于脏读，“读到未提交的数据”这种基于自然语言的定义是模糊不清的，用 History 可以进行如下两种定义：</p>
 <figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs armasm"><span class="hljs-symbol">H1</span>：<span class="hljs-built_in">w1</span>[x]...r2[x]...(<span class="hljs-built_in">a1</span> <span class="hljs-keyword">and</span> <span class="hljs-built_in">c2</span> in eithor order)<br><span class="hljs-symbol">H2</span>：<span class="hljs-built_in">w1</span>[x]...r2[x]...( (<span class="hljs-built_in">c1</span> or <span class="hljs-built_in">a1</span>) <span class="hljs-keyword">and</span> (<span class="hljs-built_in">c2</span> or <span class="hljs-built_in">a2</span>) in any order)<br></code></pre></td></tr></table></figure>
 <p>H1和H2表达了两种完全不同的操作：<br>H1 的所表达的是 ：当事务执行<strong>完成时</strong>如果出现了 T2 读到了 T1 没有提交的数据，那么就认为出现了脏读。<br>H2 的所表达的是 ：在<strong>执行过程中</strong>如果 T2 就读到到了 T1 没有提交的数据，就认为出现了脏读，而不关心最终 T1 是否已经提交。</p>
@@ -378,17 +378,17 @@
 <figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs armasm"><span class="hljs-symbol">P1</span>：<span class="hljs-built_in">w1</span>[x]...r2[x]...( (<span class="hljs-built_in">c1</span> or <span class="hljs-built_in">a1</span>) <span class="hljs-keyword">and</span> (<span class="hljs-built_in">c2</span> or <span class="hljs-built_in">a2</span>) in any order)<br><span class="hljs-symbol">A1</span>：<span class="hljs-built_in">w1</span>[x]...r2[x]...(<span class="hljs-built_in">a1</span> <span class="hljs-keyword">and</span> <span class="hljs-built_in">c2</span> in eithor order)<br></code></pre></td></tr></table></figure>
 <p>事务T1和T2在按照w1[x]…r2[x]…执行后，T1和T2的提交&#x2F;中止操作共有8种可能的情况。但是只有下面两种情况才出现脏写的问题。</p>
 <pre><code class=" mermaid">graph TB
-	w1x[&quot;w1[x]&quot;]
-   r2x[&quot;r2[x]&quot;]
-   a1_1[a1]
-   a1_2[a1]
-   c2_1[c2]
-   c2_2[c2]
-   w1x--&gt;r2x
-   r2x--&gt;a1_1
-   r2x--&gt;c2_2
-   a1_1--&gt;c2_1
-   c2_2--&gt;a1_2
+  w1[&quot;w1[x]&quot;]
+  r2[&quot;r2[x]&quot;]
+  a1_1[a1]
+  a1_2[a1]
+  c2_1[c2]
+  c2_2[c2]
+  w1--&gt;r2
+  r2--&gt;a1_1
+  r2--&gt;c2_2
+  a1_1--&gt;c2_1
+  c2_2--&gt;a1_2
 </code></pre>
 
 
@@ -431,7 +431,7 @@
 </tbody></table>
 <p>但是，《Critique》有提出，基于A的定义是错误的，之后会进行证明。现在我们来看另一种隔离级别的定义方式。</p>
 <hr>
-<h3 id="基于锁的定义"><a href="#基于锁的定义" class="headerlink" title="基于锁的定义"></a>基于锁的定义</h3><p>从工程角度来说，利用锁（Lock）很容易实现前面提到的四个隔离级别，也就是所谓的2PL的方式。<br>首先，按照并发性，Lock可以分为共享锁和互斥锁：</p>
+<h2 id="基于锁的定义"><a href="#基于锁的定义" class="headerlink" title="基于锁的定义"></a>基于锁的定义</h2><p>从工程角度来说，利用锁（Lock）很容易实现前面提到的四个隔离级别，也就是所谓的2PL的方式。<br>首先，按照并发性，Lock可以分为共享锁和互斥锁：</p>
 <ul>
 <li><strong>共享锁（Shared Lock）</strong>：共享锁之间可以并发，与互斥锁冲突</li>
 <li><strong>互斥锁（Exclusive Lock）</strong>：与其他锁冲突</li>
@@ -472,12 +472,12 @@
 </tbody></table>
 <p>了解这些信息就已经足够了，更多细节不再展开。</p>
 <hr>
-<h3 id="再次分析SQL-Isolation-Level"><a href="#再次分析SQL-Isolation-Level" class="headerlink" title="再次分析SQL Isolation Level"></a>再次分析SQL Isolation Level</h3><h4 id="SQL标准是不完整的"><a href="#SQL标准是不完整的" class="headerlink" title="SQL标准是不完整的"></a>SQL标准是不完整的</h4><p>首先，从基于锁的定义可以发现，所有的写都需要持有写锁。显然我们可以定义一个写不加锁的隔离级别，但是存在<strong>脏写（Dirty Write）</strong> 的异常：</p>
+<h2 id="再次分析SQL-Isolation-Level"><a href="#再次分析SQL-Isolation-Level" class="headerlink" title="再次分析SQL Isolation Level"></a>再次分析SQL Isolation Level</h2><h3 id="SQL标准是不完整的"><a href="#SQL标准是不完整的" class="headerlink" title="SQL标准是不完整的"></a>SQL标准是不完整的</h3><p>首先，从基于锁的定义可以发现，所有的写都需要持有写锁。显然我们可以定义一个写不加锁的隔离级别，但是存在<strong>脏写（Dirty Write）</strong> 的异常：</p>
 <figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs armasm"><span class="hljs-symbol">P0:</span> <span class="hljs-built_in">w1</span>[x]...w2[x]...((<span class="hljs-built_in">c1</span> or <span class="hljs-built_in">a1</span>) <span class="hljs-keyword">and</span> (<span class="hljs-built_in">c2</span> or <span class="hljs-built_in">a2</span>) in any order<br></code></pre></td></tr></table></figure>
 <p>首先，根据这一点，我们可以发现，SQL标准中的定义是不完整的，至少缺失了对脏写的定义(实际上，在另一篇文章中有提到，这种脏写的定义过于严格，下文会解释)。</p>
 <p>其次，基于锁的定义和基于现象（Phenomenon）的定义，实际上是完全等价的。用2PL实现不同的隔离级别，本身就是利用锁在预防异常的出现。所以，虽然SQL标准声明隔离级别的定义域实现无关，但是实际上，是“先画靶子再射箭”，在按照基于锁的实现进行定义。一些现代的MVCC的并发控制方案，并不能很好的融入到这种定义之中。</p>
 <hr>
-<h4 id="基于异常（Anomaly）的定义是错误的"><a href="#基于异常（Anomaly）的定义是错误的" class="headerlink" title="基于异常（Anomaly）的定义是错误的"></a>基于异常（Anomaly）的定义是错误的</h4><p>前文有提到，我们有两种定义方式：基于P的定义和基于A的定义。如果基于P的定义和锁是绑定的，那么基于A的定义是否是和实现无关的呢？很不幸，基于A的定义是<strong>完全错误</strong>的。</p>
+<h3 id="基于异常（Anomaly）的定义是错误的"><a href="#基于异常（Anomaly）的定义是错误的" class="headerlink" title="基于异常（Anomaly）的定义是错误的"></a>基于异常（Anomaly）的定义是错误的</h3><p>前文有提到，我们有两种定义方式：基于P的定义和基于A的定义。如果基于P的定义和锁是绑定的，那么基于A的定义是否是和实现无关的呢？很不幸，基于A的定义是<strong>完全错误</strong>的。</p>
 <p>回顾A1,A2,A3的定义：</p>
 <figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs stylus">A1：w1<span class="hljs-selector-attr">[x]</span>..<span class="hljs-selector-class">.r2</span><span class="hljs-selector-attr">[x]</span>...(a1 and c2 <span class="hljs-keyword">in</span> eithor <span class="hljs-attribute">order</span>)<br>A2：r1<span class="hljs-selector-attr">[x]</span>..<span class="hljs-selector-class">.w2</span><span class="hljs-selector-attr">[x]</span>..<span class="hljs-selector-class">.c2</span>..<span class="hljs-selector-class">.r1</span><span class="hljs-selector-attr">[x]</span>..<span class="hljs-selector-class">.c1</span><br>A3：r1<span class="hljs-selector-attr">[P]</span>..<span class="hljs-selector-class">.w2</span><span class="hljs-selector-attr">[y in P]</span>..<span class="hljs-selector-class">.r1</span><span class="hljs-selector-attr">[P]</span>...c1<br></code></pre></td></tr></table></figure>
 <p>然后定义隔离级别：</p>
@@ -563,10 +563,10 @@
 </code></pre>
 <p>z代表满足谓词P的数据项的数量。事务T1先按照谓词P读到了满足P的数据，然后因为T2有修改，所以T1再读z时，发现z的值和读到的数据量不一致。<br>和前面的例子类似，H3没有违背P1，P2，A3，它仍然是不可串行化的。和上一个例子类似，区别在于一个是行锁一个是谓词锁。<br>所以用A3定义幻读也是错误的，P3是正确的</p>
 <hr>
-<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p>《Critique》这篇文章比较重要的一点是给出了隔离级别的形式化定义，避免了自然语言模糊不清的问题。</p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>《Critique》这篇文章比较重要的一点是给出了隔离级别的形式化定义，避免了自然语言模糊不清的问题。</p>
 <p>但是它给出的基于P的定义和基于锁的实现是完全绑定的，过于严格，一些基于MVCC的实现或者乐观锁的实现完全不符合它的定义。下面一篇文章指出了这一点，并进行了改进。</p>
-<h2 id="《Generalized-Isolation-Level-Definitions》"><a href="#《Generalized-Isolation-Level-Definitions》" class="headerlink" title="《Generalized Isolation Level Definitions》"></a>《Generalized Isolation Level Definitions》</h2><p>为了解决《Critique》中定义过于严格和与实现绑定的问题，这篇文章（下文简称《Generalized》）重新对隔离级别进行了定义。</p>
-<h3 id="基本概念-1"><a href="#基本概念-1" class="headerlink" title="基本概念"></a>基本概念</h3><p>在《Critique》的基础上增加以下内容：</p>
+<h1 id="《Generalized-Isolation-Level-Definitions》"><a href="#《Generalized-Isolation-Level-Definitions》" class="headerlink" title="《Generalized Isolation Level Definitions》"></a>《Generalized Isolation Level Definitions》</h1><p>为了解决《Critique》中定义过于严格和与实现绑定的问题，这篇文章（下文简称《Generalized》）重新对隔离级别进行了定义。</p>
+<h2 id="基本概念-1"><a href="#基本概念-1" class="headerlink" title="基本概念"></a>基本概念</h2><p>在《Critique》的基础上增加以下内容：</p>
 <ol>
 <li><p><strong>多版本</strong>：每个数据项有多个版本，用 x{i} 表示</p>
 </li>
@@ -597,26 +597,28 @@
 </code></pre>
 
 <hr>
-<h3 id="新的隔离级别的定义"><a href="#新的隔离级别的定义" class="headerlink" title="新的隔离级别的定义"></a>新的隔离级别的定义</h3><p>我们可以先给一个不太正式的可串行化的定义：</p>
+<h2 id="新的隔离级别的定义"><a href="#新的隔离级别的定义" class="headerlink" title="新的隔离级别的定义"></a>新的隔离级别的定义</h2><p>我们可以先给一个不太正式的可串行化的定义：</p>
 <blockquote>
 <p>多个并发执行的事务执行的结果，和这些事务按照某种顺序一个接一个串行执行的结果是一样，那么就可以认为这些事务是可串行化的。</p>
 </blockquote>
 <p>那么，根据上面提到的事务间的依赖关系，如果事务T2依赖事务T1，T2必须在T1之后执行。显然，如果一个History(H)对应的DSG(H)中没有环，是一个有向无环图，H中的所有事务并发执行的结果，必然和DSG(H)的某个拓扑排序的结果是相同的。</p>
 <p>《Generalized》中的隔离级别的定义是比《Critique》中的更准确更清晰，也更容易理解。</p>
 <hr>
-<h4 id="读未提交"><a href="#读未提交" class="headerlink" title="读未提交"></a>读未提交</h4><p>定义<strong>G0（脏写）</strong>：</p>
-<blockquote>
-<p> 如果DSG(H)中包含仅由写依赖构成的环，就认为出现的脏写。</p>
-</blockquote>
+<h3 id="读未提交"><a href="#读未提交" class="headerlink" title="读未提交"></a>读未提交</h3><p>定义<strong>G0（脏写）</strong>：</p>
+<div class="note note-success">
+            <p>如果DSG(H)中包含仅由写依赖构成的环，就认为出现的脏写。</p>
+          </div>
+
 <pre><code class=" mermaid">graph LR
   Ti--ww--&gt;Tj
   Tj--ww--&gt;Ti
 </code></pre>
 
 <p>定义隔离级别<strong>PL-1（读未提交）</strong>：</p>
-<blockquote>
-<p>禁止出现G0。</p>
-</blockquote>
+<div class="note note-success">
+            <p>禁止出现G0。</p>
+          </div>
+
 <p>G0的定义是比P0更宽松的。按照P0的定义，事务Ti未提交的数据如果被事务Tj覆盖，就视为脏写。但是G0的定义中，只要Tj严格发生在Ti之后，无论有没有覆盖未提交的数据，都不是脏写。比如：</p>
 <figure class="highlight prolog"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs prolog"><span class="hljs-symbol">H3</span>: w1[ x&#123;i&#125;=<span class="hljs-number">50</span>] w1[y&#123;i&#125;=<span class="hljs-number">50</span>] w2[x&#123;i&#125;=<span class="hljs-number">10</span>] w2[ y&#123;i&#125;=<span class="hljs-number">90</span>] ...<br></code></pre></td></tr></table></figure>
 <pre><code class=" mermaid">graph LR
@@ -630,25 +632,28 @@
 </code></pre>
 <p>T2覆盖了T1的x，T1覆盖了T2的y。所以无法确定T1和T2的执行顺序，出现了脏写。</p>
 <hr>
-<h4 id="读已提交"><a href="#读已提交" class="headerlink" title="读已提交"></a>读已提交</h4><p>对于脏读，分为三种情况讨论。</p>
+<h3 id="读已提交"><a href="#读已提交" class="headerlink" title="读已提交"></a>读已提交</h3><p>对于脏读，分为三种情况讨论。</p>
 <p>定义<strong>G1a（aborted reads）</strong>：</p>
-<blockquote>
-<p>History(H)中出现了被abort的事务T1和被提交的事务T2，并且T2读到了T1写入的数据。</p>
-</blockquote>
+<div class="note note-success">
+            <p>History(H)中出现了被abort的事务T1和被提交的事务T2，并且T2读到了T1写入的数据。</p>
+          </div>
+
 <p>这个定义是非常容易理解的，而是是最常见的对脏读的定义。但是G1a是比P1更宽松的，比如：</p>
 <figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs armasm"><span class="hljs-symbol">H5:</span> <span class="hljs-built_in">w1</span>[x_i<span class="hljs-number">=50</span>] <span class="hljs-built_in">r2</span>[x_i] <span class="hljs-built_in">a1</span> <span class="hljs-built_in">a2</span><br></code></pre></td></tr></table></figure>
 <p>H5是违反了P1的，但是并不违反G1a。有可能在某种乐观并发的实现中，事务T2如果依赖了T1，那么在T2提交之时要检查T1是否被成功提交，如果T2发现T1被abort，那么自己也会abort。这在P1的悲观锁实现中，是完全被禁止的。</p>
 <hr>
 <p>定义<strong>G1b（Intermediate Reads）</strong>：</p>
-<blockquote>
-<p>T1对写入了x{i}，之后又T2读到了x{i}，T1又写入了x{j}，然后T1和T2被提交。T2读到了T1修改数据的某个中间版本。</p>
-</blockquote>
+<div class="note note-success">
+            <p>T1对写入了x{i}，之后又T2读到了x{i}，T1又写入了x{j}，然后T1和T2被提交。T2读到了T1修改数据的某个中间版本。</p>
+          </div>
+
 <p>这个定义也是非常容易理解的，是对G1a的补充。如果T2读到了x的某个中间版本，就无法确定T1和T2发生的先后顺序。</p>
 <hr>
 <p>定义<strong>G1c（Circular Information Flow）</strong>：</p>
-<blockquote>
-<p>History(H)构成的DSG(H)中，出现了由读依赖和写依赖组成的环。</p>
-</blockquote>
+<div class="note note-success">
+            <p>History(H)构成的DSG(H)中，出现了由读依赖和写依赖组成的环。</p>
+          </div>
+
 <p>更准确的解释，环有三种情况：1）仅有写依赖；2）仅有读依赖；3）有读依赖和写依赖。G1c是包含G0的，对于第一种情况不需要再讨论。</p>
 <p>对于第二种情况：</p>
 <figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs armasm"><span class="hljs-symbol">H6:</span> <span class="hljs-built_in">w1</span>[x_i<span class="hljs-number">=1</span>] <span class="hljs-built_in">w2</span>[y_i<span class="hljs-number">=1</span>] <span class="hljs-built_in">r1</span>[y_i] <span class="hljs-built_in">r2</span>[x_i] <span class="hljs-built_in">c1</span> <span class="hljs-built_in">c2</span><br></code></pre></td></tr></table></figure>
@@ -659,24 +664,28 @@
 <p>虽然最终T1和T2都被提交，但是T1读到了T2未提交的数据，T2读到了T1未提交的数据，出现了脏读。<br>第三种情况类似。</p>
 <hr>
 <p>定义<strong>G1（脏读）</strong>：</p>
-<blockquote>
-<p>如果出现了G1a，G1b，或G1c，就认为出现了脏读。</p>
-</blockquote>
-<p>定义隔离级别<strong>PL-2（读已提交）</strong>：</p>
-<blockquote>
-<p>不允许出现G1（显然也不允许出现G0，因为G1c包含G0）。</p>
-</blockquote>
+<div class="note note-success">
+            <p>如果出现了G1a，G1b，或G1c，就认为出现了脏读。</p>
+          </div>
+
+<p>定义隔离级别<strong>PL-2（读已提交）</strong>： </p>
+<div class="note note-success">
+            <p>不允许出现G1（显然也不允许出现G0，因为G1c包含G0）。</p>
+          </div>
+
 <p>前面有提到，G1是比P1更宽松，且和实现无关的。并且G1的定义比P1的定义更加清晰。</p>
 <hr>
-<h4 id="可串行化"><a href="#可串行化" class="headerlink" title="可串行化"></a>可串行化</h4><p>跳过可重复度，先看可串行化的定义。</p>
+<h3 id="可串行化"><a href="#可串行化" class="headerlink" title="可串行化"></a>可串行化</h3><p>跳过可重复度，先看可串行化的定义。</p>
 <p>定义<strong>G2（Anti-dependency Cycles）</strong>：</p>
-<blockquote>
-<p>DSG(H)中出现了包含一个或多个反依赖的环。</p>
-</blockquote>
+<div class="note note-success">
+            <p>DSG(H)中出现了包含一个或多个反依赖的环。</p>
+          </div>
+
 <p>定义隔离级别<strong>PL-3（可串行化）</strong>：</p>
-<blockquote>
-<p>不允许出现G1和G2。</p>
-</blockquote>
+<div class="note note-success">
+            <p>不允许出现G1和G2。</p>
+          </div>
+
 <p>按照这一节最开始所讲，当DSG(H)中没有环出现时，所有的事务都满足可串行化。禁止G1和G2就禁止了所有环的出现。</p>
 <p>很容易想到，“不可重复读”也是满足某种环的定义。举例：</p>
 <figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs armasm"><span class="hljs-symbol">H7:</span> <span class="hljs-built_in">r1</span>[x_i] <span class="hljs-built_in">w2</span>[x_j] <span class="hljs-built_in">r1</span>[x_j] <span class="hljs-built_in">c1</span> <span class="hljs-built_in">c2</span><br></code></pre></td></tr></table></figure>
@@ -685,27 +694,32 @@
   T2--wr--&gt;T1
 </code></pre>
 <p>但是需要注意，G2禁止的环不单单是“不可重复读”这一种。</p>
-<h4 id="可重复读"><a href="#可重复读" class="headerlink" title="可重复读"></a>可重复读</h4><p>可重复读夹在读已提交和可串行化之间。P2和定义和P1相比，也只是多了谓词的约束。所以，对于可重复读的定义，只需要弱化G2。</p>
+<h3 id="可重复读"><a href="#可重复读" class="headerlink" title="可重复读"></a>可重复读</h3><p>可重复读夹在读已提交和可串行化之间。P2和定义和P1相比，也只是多了谓词的约束。所以，对于可重复读的定义，只需要弱化G2。</p>
 <p>定义<strong>G2-item</strong>：</p>
-<blockquote>
-<p>DSG(H)中出现了包含一个或多个反依赖的环，并且反依赖的读不可以是读取某个谓词。</p>
-</blockquote>
+<div class="note note-success">
+            <p>DSG(H)中出现了包含一个或多个反依赖的环，并且反依赖的读不可以是读取某个谓词。</p>
+          </div>
+
 <p>定义<strong>PL-2.99（可重复读）</strong></p>
-<blockquote>
-<p>禁止出现G1和G2-Item</p>
-</blockquote>
+<div class="note note-success">
+            <p>禁止出现G1和G2-Item</p>
+          </div>
+
+
+
 <hr>
-<h3 id="小结-1"><a href="#小结-1" class="headerlink" title="小结"></a>小结</h3><p>《Generalized》给出了准确、清晰、宽松、与实现无关的隔离级别的定义。对于SQL标准中提到的隔离级别，可以告一段落。</p>
+<h2 id="小结-1"><a href="#小结-1" class="headerlink" title="小结"></a>小结</h2><p>《Generalized》给出了准确、清晰、宽松、与实现无关的隔离级别的定义。对于SQL标准中提到的隔离级别，可以告一段落。</p>
 <p>但是文章开头有提到，SQL标准中隔离级别的定义是不完整的。到目前为止，我们还没有看到快照隔离的定义，它因为Percolater而广为人知，常见的误区是快照隔离就是可重复读，或者是，快照隔离是介于可重复度与可串行化之间的隔离级别。</p>
 <p>快照隔离本身就有很多变种。并且除了快照隔离，还有其他不太常见的隔离级别，比如Read Atomic。接下来的内容，将会重点介绍这些隔离级别</p>
 <hr>
-<h2 id="快照隔离-Snapshot-Isolation"><a href="#快照隔离-Snapshot-Isolation" class="headerlink" title="快照隔离 Snapshot Isolation"></a>快照隔离 Snapshot Isolation</h2><p>快照隔离也是一个 常见的隔离级别。对于SI常见的理解是：在MVCC的实现中，事务开始时获取一个快照，所有的读操作都在这个快照上进行。</p>
+<h1 id="快照隔离-Snapshot-Isolation"><a href="#快照隔离-Snapshot-Isolation" class="headerlink" title="快照隔离 Snapshot Isolation"></a>快照隔离 Snapshot Isolation</h1><p>快照隔离也是一个 常见的隔离级别。对于SI常见的理解是：在MVCC的实现中，事务开始时获取一个快照，所有的读操作都在这个快照上进行。</p>
 <p>显然SI是满足可重复读的，一个常见的<strong>误解</strong>是SI是在RR和SER之间的一个隔离级别。</p>
 <p>那么，SI和上面提到的四个隔离级别之间是什么关系，SI存在什么样的异常，在下文中进行讨论</p>
-<h3 id="《Critique》中的定义"><a href="#《Critique》中的定义" class="headerlink" title="《Critique》中的定义"></a>《Critique》中的定义</h3><p>《Critique》中给出的SI的定义如下：</p>
-<blockquote>
-<p> 每个事务从数据库的已提交数据快照（snapshot） 中读取数据，该快照的时间点称为事务的开始时间戳（Start-Timestamp） ，即事务启动的时刻。此时间可以是事务首次执行读操作（Read） 之前的任意时间点。只要能够维护基于其开始时间戳的快照数据，运行在快照隔离下的事务在执行读操作时永远不会被阻塞。该事务的写操作（writes）（包括更新、插入和删除）也会反映在此快照中，若事务再次访问（即读取或更新）相同数据时可被重新读取。在该事务开始时间戳之后活跃的其他事务所进行的更新对该事务不可见。  <br/><br>当事务 T1 准备提交时，它将获取一个提交时间戳（Commit-Timestamp） ，该时间戳晚于任何现有的开始时间戳或提交时间戳。仅当不存在其他事务 T2（其提交时间戳处于 T1 的执行时间区间（execution interval）[开始时间戳, 提交时间戳]内）与 T1 写入相同数据时，T1 才能成功提交。否则 T1 将中止。此特性称为先提交者获胜（First-committer-wins） ，可防止更新丢失（lost updates）（即现象 P4）。当 T1 提交后，其变更将对所有开始时间戳晚于 T1 提交时间戳的事务可见。</p>
-</blockquote>
+<h2 id="《Critique》中的定义"><a href="#《Critique》中的定义" class="headerlink" title="《Critique》中的定义"></a>《Critique》中的定义</h2><p>《Critique》中给出的SI的定义如下：</p>
+<div class="note note-info">
+            <p>每个事务从数据库的已提交数据快照（snapshot） 中读取数据，该快照的时间点称为事务的开始时间戳（Start-Timestamp） ，即事务启动的时刻。此时间可以是事务首次执行读操作（Read） 之前的任意时间点。只要能够维护基于其开始时间戳的快照数据，运行在快照隔离下的事务在执行读操作时永远不会被阻塞。该事务的写操作（writes）（包括更新、插入和删除）也会反映在此快照中，若事务再次访问（即读取或更新）相同数据时可被重新读取。在该事务开始时间戳之后活跃的其他事务所进行的更新对该事务不可见。  <br/><br>当事务 T1 准备提交时，它将获取一个提交时间戳（Commit-Timestamp） ，该时间戳晚于任何现有的开始时间戳或提交时间戳。仅当不存在其他事务 T2（其提交时间戳处于 T1 的执行时间区间（execution interval）[开始时间戳, 提交时间戳]内）与 T1 写入相同数据时，T1 才能成功提交。否则 T1 将中止。此特性称为先提交者获胜（First-committer-wins） ，可防止更新丢失（lost updates）（即现象 P4）。当 T1 提交后，其变更将对所有开始时间戳晚于 T1 提交时间戳的事务可见。</p>
+          </div>
+
 <p>文章定义了两种新的现象A5A（读偏序）和A5B（写偏序）：</p>
 <figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs stylus">A5A: r1<span class="hljs-selector-attr">[x]</span>..<span class="hljs-selector-class">.w2</span><span class="hljs-selector-attr">[x]</span>..<span class="hljs-selector-class">.w2</span><span class="hljs-selector-attr">[y]</span>..<span class="hljs-selector-class">.c2</span>..<span class="hljs-selector-class">.r1</span><span class="hljs-selector-attr">[y]</span>...(c1 or a1)<br>A5B: r1<span class="hljs-selector-attr">[x]</span>..<span class="hljs-selector-class">.r2</span><span class="hljs-selector-attr">[y]</span>..<span class="hljs-selector-class">.w1</span><span class="hljs-selector-attr">[y]</span>..<span class="hljs-selector-class">.w2</span><span class="hljs-selector-attr">[x]</span>...(c1 and c2 occur)<br></code></pre></td></tr></table></figure>
 <p>这两种现象在RC隔离级别中都会出现，但是在SI隔离级别中，只会出现写偏序，不会出现读偏序。SI和前文定义的四个隔离级别关系如下：</p>
@@ -725,7 +739,7 @@
 </code></pre>
 <p>SI必须通过MVCC实现，所以基于2PL的方案，不可能出现读偏序和写偏序。<br>对于写偏序有很经典的黑白球的例子进行解释：</p>
 <p><img src="/images/1.png" srcset="/img/loading.gif" lazyload></p>
-<h3 id="《Weak-Consistency》的定义"><a href="#《Weak-Consistency》的定义" class="headerlink" title="《Weak Consistency》的定义"></a>《Weak Consistency》的定义</h3><p>《Generalized》是另一篇200页的大论文《Weak Consistency: A Generalized Theory and Optimistic Implementations for Distributed Transactions》的简要版。在《Generalized》中没有提到SI隔离级别，但是《Weak Consistency》中有明确定义。以及更多的隔离级别。文章中定义的SI所处的位置如下：</p>
+<h2 id="《Weak-Consistency》的定义"><a href="#《Weak-Consistency》的定义" class="headerlink" title="《Weak Consistency》的定义"></a>《Weak Consistency》的定义</h2><p>《Generalized》是另一篇200页的大论文《Weak Consistency: A Generalized Theory and Optimistic Implementations for Distributed Transactions》的简要版。在《Generalized》中没有提到SI隔离级别，但是《Weak Consistency》中有明确定义。以及更多的隔离级别。文章中定义的SI所处的位置如下：</p>
 <pre><code class=" mermaid">graph BT
 	RU[Read Uncommitted]
     RC[Read Committed]
@@ -744,100 +758,44 @@
 </code></pre>
 <p>这是一个<strong>过于严格</strong>的定义。SI并没有严格弱于SER，而是严格弱于Strict SER。《Weak Consistency》为SI添加了可线性化（linearizable）的约束。</p>
 <p>《Weak Consistency》在定义SI时，扩展了DSG(H)，引入了事务在时间上发生的先后顺序。这种定义比较复杂，并且可线性化对SI来说是不必要的，所以我们不再展开介绍《Weak Consistency》中SI的定义。</p>
-<h3 id="Jepsen的定义"><a href="#Jepsen的定义" class="headerlink" title="Jepsen的定义"></a>Jepsen的定义</h3><p>在Jepsen的<a target="_blank" rel="noopener" href="https://jepsen.io/consistency/models">一致性模型</a>中，SI所处的位置如下：<br><img src="/images/2.png" srcset="/img/loading.gif" lazyload></p>
-<h3 id="Basic-Snapshot-Isolation"><a href="#Basic-Snapshot-Isolation" class="headerlink" title="Basic Snapshot Isolation"></a>Basic Snapshot Isolation</h3><p>《Critique》这篇文章最给出了SI的定义。</p>
-<p>每个事务读取数据时，都会从事务启动时（已提交）数据的快照（称为“开始时间戳”）中读取数据。此时间可以是事务首次读取之前的任何时间。在快照隔离下运行的事务，只要能够维护其“开始时间戳”的快照数据，就永远不会被阻止尝试读取。事务的写入操作（更新、插入和删除）也将反映在此快照中，如果事务再次访问（即读取或更新）数据，则会再次读取。事务“开始时间戳”之后活动的其他事务的更新对事务不可见。</p>
-<p>当事务 T1 准备提交时，它会获得一个提交时间戳 (Commit-Timestamp)，该时间戳大于任何现有的开始时间戳 (Start-Timestamp) 或提交时间戳 (Commit-Timestamp)。只有当 T1 的执行间隔内没有其他事务 T2 (其提交时间戳为 [StartTimestamp, Commit-Timestamp]) 写入与 T1 相同的数据时，事务才会成功提交。否则，T1 将中止。此功能称为“先提交者获胜 (First-committer-wins)”，可防止丢失更新（现象 P4）。当 T1 提交时，其更改将对所有开始时间戳大于 T1 提交时间戳的事务可见。</p>
-<p>文章定义了两种新的现象A5A（读偏序）和A5B（写偏序）：</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs stylus">A5A: r1<span class="hljs-selector-attr">[x]</span>..<span class="hljs-selector-class">.w2</span><span class="hljs-selector-attr">[x]</span>..<span class="hljs-selector-class">.w2</span><span class="hljs-selector-attr">[y]</span>..<span class="hljs-selector-class">.c2</span>..<span class="hljs-selector-class">.r1</span><span class="hljs-selector-attr">[y]</span>...(c1 or a1)<br>A5B: r1<span class="hljs-selector-attr">[x]</span>..<span class="hljs-selector-class">.r2</span><span class="hljs-selector-attr">[y]</span>..<span class="hljs-selector-class">.w1</span><span class="hljs-selector-attr">[y]</span>..<span class="hljs-selector-class">.w2</span><span class="hljs-selector-attr">[x]</span>...(c1 and c2 occur)<br></code></pre></td></tr></table></figure>
-<p>这两种现象在RC隔离级别中都会出现，但是在SI隔离级别中，只会出现写偏序，不会出现读偏序。</p>
-<hr>
-<p>之后《Weak Consistent》这篇文章利用可串行化图，精确定义了SI（但是仍有不足，下面会讲）。回顾前文，《Generalized》在定义RU&#x2F;RC&#x2F;RR时，我们只用到了读依赖和写依赖，没有用到反依赖的关系。直觉上来说，必定存在一种只由反依赖构成的环。将A5A和A5B用可串行化图来表示的话：</p>
-<pre><code class=" mermaid">graph LR
-  T1-.rw.-&gt;T2
-  T2--wr--&gt;T1
-</code></pre>
-<p>可以大胆猜测A5A是包含了一条反依赖边组成的环，而</p>
-<pre><code class=" mermaid">graph LR
-  T1-.rw.-&gt;T2
-  T2-.rw.-&gt;T1
-</code></pre>
-<p>A5B是包含了两条反依赖边组成的环。</p>
-<hr>
-<p>《Weak Consistent》扩展了可串行化图，引入了时间关系，对SI的定义比较复杂，且存在一些问题。</p>
-<p>《Weak Consistent》的定义中，SI和SER是不可比较的，这不太符合直觉上对SI的认识。原因有如下两点：</p>
-<ol>
-<li>SI是满足可线性化的约束，SER不满足。</li>
-<li>SI不能出现Lost Update，但是SER可以。</li>
-</ol>
-<p>如果只考虑写偏序的问题，SER是严格强于SI的。如果考虑以上两点，SI是强于SER的，所以SI和SER不可比较。但是以上两点都可以无视，或者被证明SI并不需要这两个约束。</p>
-<hr>
-<p>我们先看第一点。《Weak Consistent》对SI的定义中，需要保证：</p>
-<blockquote>
-<p>如果事务Tj是在事务Ti之后开始的（物理时间，真实世界时间），那么Tj必须要读到Ti修改的内容。</p>
-</blockquote>
-<p>但是SER的定义是</p>
-<blockquote>
-<p>事务并行执行的结果和按照某种串行执行的结果一致。</p>
-</blockquote>
-<p>下面这个历史是满足SER的，但是违背了《Weak Consistent》定义的SI：</p>
-<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs armasm"><span class="hljs-symbol">H1:</span> <span class="hljs-built_in">w1</span>(x_1) <span class="hljs-built_in">c1</span> <span class="hljs-built_in">r2</span>(x_0) <span class="hljs-built_in">c2</span> <br></code></pre></td></tr></table></figure>
+<h2 id="Jepsen的定义"><a href="#Jepsen的定义" class="headerlink" title="Jepsen的定义"></a>Jepsen的定义</h2><p>在Jepsen的<a target="_blank" rel="noopener" href="https://jepsen.io/consistency/models">一致性模型</a>中，SI所处的位置如下：<br><img src="/images/2.png" srcset="/img/loading.gif" lazyload></p>
+<p>下面是Jepsen给出的基于串行化图的SI定义：</p>
+<p>定义G-nonadjacent</p>
+<div class="note note-success">
+            <p>DSG(H)中出现，由若干个读依赖&#x2F;写依赖，以及至少一个反依赖组成的环。且多个反依赖之间不能相邻。</p>
+          </div>
 
-<p>SER并没有要求事务执行的顺序和真实发生顺序相同。《Weak Consistent》认为SI需要满足可线性化（可线性化和可串行化的区别下文会展开讲）。Jepsen认为SI并不需要满足可线性化，它是严格弱于SER的。前一种称为“classic&#x2F;strong”SI，后一种称为“generalize&#x2F;weak”SI。我比较认可Jepsen对SI的定义，尤其是在分布式系统中，满足可线性化是一个非常困难的事情。</p>
-<p>但是，要注意，“generalize&#x2F;weak”的定义有病态排序的问题：任何一个事务开始时都可以选择时间0作为开始时间戳，任何读操作都读不到任何数据。</p>
-<hr>
-<p>下面是Jepsen给出的SI的定义：</p>
-<p>定义G-nonadjacent：DSG(H)中出现，由若干个读依赖&#x2F;写依赖，以及至少一个反依赖组成的环。且多个反依赖之间不能相邻。</p>
-<p>定义Snapshot Isolation：DSG(H)中不能出现G1和G-nonadjacent。</p>
+<p>定义Snapshot Isolation：</p>
+<div class="note note-success">
+            <p>DSG(H)中不能出现G1和G-nonadjacent。</p>
+          </div>
 <p>G-nonadjacent的定义非常的不直观，我也没有想到很好的方式去理解它。所以暂时用“读偏序”来区分RC和SI也无伤大雅。</p>
 <p>在定义了G-nonadjacent之后，在可串行化图上，SI和SER之间显然只剩下一种环：包含相邻的两个反依赖组成的环。这在《Making Snapshot Isolation Serializable》有严格的证明。</p>
-<h3 id="Write-Snapshot-Isolation"><a href="#Write-Snapshot-Isolation" class="headerlink" title="Write Snapshot Isolation"></a>Write Snapshot Isolation</h3><p>针对第二点Lost Update的问题，另一篇文章《A Critique of Snapshot Isolation》给出了答案。下文简称它《Critique2》。</p>
-<p>首先明确什么是Lost Update。</p>
-<p>《Critique》中给出了P4(Lost Update)的定义：</p>
-<blockquote>
-<p>当事务T1读取某个数据项后，事务T2更新该数据项（可能基于之前的读取操作），接着T1（基于其先前读取的值）更新该数据项并提交时，就会发生Lost Update。</p>
-</blockquote>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs stylus">P4: r1<span class="hljs-selector-attr">[x]</span>..<span class="hljs-selector-class">.w2</span><span class="hljs-selector-attr">[x]</span>..<span class="hljs-selector-class">.w1</span><span class="hljs-selector-attr">[x]</span>...c1<br></code></pre></td></tr></table></figure>
+<h2 id="Snapshot-Isolation的实时性保证（可线性化）"><a href="#Snapshot-Isolation的实时性保证（可线性化）" class="headerlink" title="Snapshot Isolation的实时性保证（可线性化）"></a>Snapshot Isolation的实时性保证（可线性化）</h2><p>回顾可串行化的定义：事务并行执行的结果和<strong>按照某种串行执行</strong>的结果一致。<br>也就是说，可串行化并没有要求事务执行的时间必须和物理时间保持一致。<br>那么实际上就会有<strong>病态排序</strong>的问题：</p>
+<div class="note note-info">
+            <ol><li>事务T1在t1时刻提交write(x_1,10)</li><li>事务T2在t2(t1&lt; t2)读到x_0&#x3D;null</li></ol>
+          </div>
 
-<p>《Weak Consistent》中用G-SIa避免SI的更新丢失的问题。因为过于复杂，我们不看G-SIa的定义，只看下面的例子：</p>
-<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs armasm"><span class="hljs-symbol">H2:</span> <span class="hljs-built_in">r1</span>(<span class="hljs-built_in">x0</span>) <span class="hljs-built_in">r2</span>(<span class="hljs-built_in">x0</span>) <span class="hljs-built_in">w1</span>(z1) <span class="hljs-built_in">w2</span>(z2) <span class="hljs-built_in">c1</span> <span class="hljs-built_in">c2</span><br></code></pre></td></tr></table></figure>
-<p>事务T1和T2都读了x，然后（基于读到的x的值）修改了z的值。</p>
+<p>在单版本的实现中，是不存在病态排序的。x只有一个版本，在某个时刻被修改后，之后对其他事务一定可见。<br>在单机数据库中，也很容易解决这个问题：只需要使用一个严格单调递增的时钟作为MVCC的版本号。</p>
+<p>但是在分布式的MVCC实现中，这一点是很难做到的。分布式时钟有两种主流的方案：HLC和TSO。HLC不能保证全局严格单调。TSO要实现全局严格单调，会有比较大的RPC开销，并且有单点问题。在《Weak Consistency》的定义中SER并不需要实时性保证，但是SI需要。所以SI没有严格弱于SER，但是SI和SER都严格弱于Strict SER。在Jepsen的定义中，SI并不需要实时性保证，所以SI严格弱于SER。我比较认可Jepsen的定义，这比较符合直觉。</p>
+<p>病态排序在极端情况下，会出现这样的现象：所有的读都读t0时刻的快照，也就是说任何的读操作都返回空，这也是符合要求的。如果采用纯逻辑时钟，病态排序的问题就会比较严重，但是采用HLC的话，可以基于物理时钟提供一个时钟漂移的上界，降低病态排序的影响</p>
+<h2 id="Write-Snapshot-Isolation"><a href="#Write-Snapshot-Isolation" class="headerlink" title="Write Snapshot Isolation"></a>Write Snapshot Isolation</h2><p>TODO</p>
 <hr>
-<p>更新丢失都是出现在写-写冲突中。为了避免出现写-写冲突，一般的做法都是在写之前先加锁。但是《Critique2》指出：</p>
-<blockquote>
-<p>SI是允许Lost Update的</p>
-</blockquote>
-<p>对于以下例子：</p>
-<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs armasm"><span class="hljs-symbol">H3:</span> <span class="hljs-built_in">r1</span>[x] <span class="hljs-built_in">r2</span>[x] <span class="hljs-built_in">w2</span>[x] <span class="hljs-built_in">w1</span>[x] <span class="hljs-built_in">c1</span> <span class="hljs-built_in">c2</span><br></code></pre></td></tr></table></figure>
-<p>是存在更新丢失的。但是如果T2直接盲写：</p>
-<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs armasm"><span class="hljs-symbol">H4:</span> <span class="hljs-built_in">r1</span>[x] <span class="hljs-built_in">w2</span>[x] <span class="hljs-built_in">w1</span>[x] <span class="hljs-built_in">c1</span> <span class="hljs-built_in">c2</span><br></code></pre></td></tr></table></figure>
-<p>它和H5是等价的：</p>
-<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs armasm"><span class="hljs-symbol">H5:</span> <span class="hljs-built_in">r1</span>[x]  <span class="hljs-built_in">w1</span>[x] <span class="hljs-built_in">c1</span> <span class="hljs-built_in">w2</span>[x] <span class="hljs-built_in">c2</span><br></code></pre></td></tr></table></figure>
-<p>而H5并不存在更新丢失。同样，我们可以认为H2也没有出现更新丢失，H2和下面的历史是等价的：</p>
-<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs armasm"><span class="hljs-symbol">H2.1:</span> <span class="hljs-built_in">r1</span>(<span class="hljs-built_in">x0</span>) <span class="hljs-built_in">w1</span>(z1) <span class="hljs-built_in">c1</span> <span class="hljs-built_in">r2</span>(<span class="hljs-built_in">x0</span>) <span class="hljs-built_in">w2</span>(z2) <span class="hljs-built_in">c2</span><br></code></pre></td></tr></table></figure>
-<p>也就是说，写-写冲突，在盲写的情况下会出现误判。</p>
-<p>而对于H3，因为r2[x]的存在，可以认为T1和T2之间出现了读-写冲突（不是写-读冲突，注意区分），而不是写-写冲突。</p>
-<p>《Critique2》给出了一个令人惊奇的结论：</p>
-<blockquote>
-<p>SI只需要解决读-写冲突，就可以实现SER。并且SER的性能和SI的性能没有什么区别。</p>
-</blockquote>
-<p>CockroachDB中实现的事务，有很多Write Snapshot Isolation的影子，是个很棒的分布式事务的实现。有时间的话单独写一写CockroachDB中事务的实现。</p>
-<hr>
-<h3 id="小结-2"><a href="#小结-2" class="headerlink" title="小结"></a>小结</h3><p>至此，对于快照隔离已经有了理论上的准确定义。有很多研究在快照隔离的基础上进一步做到可串行化，可以自行查阅。<br>在工程上，对于快照隔离的实现也有很多的难点和权衡，下面介绍这一部分。</p>
-<h3 id="分布式-Percolator"><a href="#分布式-Percolator" class="headerlink" title="分布式-Percolator"></a>分布式-Percolator</h3><h3 id="分布式-ClockSI"><a href="#分布式-ClockSI" class="headerlink" title="分布式-ClockSI"></a>分布式-ClockSI</h3><h3 id="多副本-Prefix-SI"><a href="#多副本-Prefix-SI" class="headerlink" title="多副本-Prefix-SI"></a>多副本-Prefix-SI</h3><h2 id="严格可串行化-Strict-Serializability"><a href="#严格可串行化-Strict-Serializability" class="headerlink" title="严格可串行化 Strict Serializability"></a>严格可串行化 Strict Serializability</h2><p>严格可串行化是分布式场景下特有的隔离级别，在Spanner中称之为外部一致性（external-consistent），它们是一回事。</p>
+<h2 id="小结-2"><a href="#小结-2" class="headerlink" title="小结"></a>小结</h2><p>至此，对于快照隔离已经有了理论上的准确定义。有很多研究在快照隔离的基础上进一步做到可串行化，可以自行查阅。<br>在工程上，对于快照隔离的实现也有很多的难点和权衡，下面介绍这一部分。</p>
+<h2 id="分布式-Percolator"><a href="#分布式-Percolator" class="headerlink" title="分布式-Percolator"></a>分布式-Percolator</h2><h2 id="分布式-ClockSI"><a href="#分布式-ClockSI" class="headerlink" title="分布式-ClockSI"></a>分布式-ClockSI</h2><h2 id="多副本-Prefix-SI"><a href="#多副本-Prefix-SI" class="headerlink" title="多副本-Prefix-SI"></a>多副本-Prefix-SI</h2><h1 id="严格可串行化-Strict-Serializability"><a href="#严格可串行化-Strict-Serializability" class="headerlink" title="严格可串行化 Strict Serializability"></a>严格可串行化 Strict Serializability</h1><p>严格可串行化是分布式场景下特有的隔离级别，在Spanner中称之为外部一致性（external-consistent），它们是一回事。</p>
 <p>我认为Strict-SER是一个不太重要的隔离级别，实现它非常困难，性能损失极大，带来的收益有限。所以我们只需要知道，SER在分布式场景下存在什么样的问题就好。</p>
 <p>并且，借这个隔离级别，讲一下可线性化（linearizable）与可串行化（Serializable）之间的区别</p>
-<h3 id="令人困惑的“一致性”"><a href="#令人困惑的“一致性”" class="headerlink" title="令人困惑的“一致性”"></a>令人困惑的“一致性”</h3><p><em>以下内容个人理解和总结偏多，有不对的地方欢迎指正</em></p>
+<h2 id="令人困惑的“一致性”"><a href="#令人困惑的“一致性”" class="headerlink" title="令人困惑的“一致性”"></a>令人困惑的“一致性”</h2><p><em>以下内容个人理解和总结偏多，有不对的地方欢迎指正</em></p>
 <p>“一致性”是一个被用烂了的词。分布式要一致性，数据库要一致性，分布式数据库也要一致性。但是在不同的场景下“一致性”所表达的含义完全不一样。</p>
-<h4 id="CAP中的C"><a href="#CAP中的C" class="headerlink" title="CAP中的C"></a>CAP中的C</h4><p>在分布式场景中，有个经典的CAP理论：当出现网络分区（P）时，可用性（A）和一致性（C）只能二选一。</p>
+<h3 id="CAP中的C"><a href="#CAP中的C" class="headerlink" title="CAP中的C"></a>CAP中的C</h3><p>在分布式场景中，有个经典的CAP理论：当出现网络分区（P）时，可用性（A）和一致性（C）只能二选一。</p>
 <p>这里提到的一致性，指的是“在分布式系统中，事件发生的顺序就像它们是在单机上发生的一样”。</p>
 <p>可以简单理解，对于变量x，它有多个副本。对x进行的任何修改操作的顺序，在每个副本上都是一样的。</p>
 <p>为了解决这个问题，业界发明了Paxos，Raft等一致性算法。Paxos&#x2F;Raft是强一致的，对于这种强一致，我们称之为可线性化（linearizable）。</p>
 <p>然后在一些场景下，可以牺牲一致性换取可用性，衍生出了BASE理论。出现了单调一致、最终一致等等各种奇怪的一致性定义。</p>
-<h4 id="ACID中的C"><a href="#ACID中的C" class="headerlink" title="ACID中的C"></a>ACID中的C</h4><p>在数据库中，ACID是事务的基本性质。这里的一致性指的是：多个对象之间满足某种约束。</p>
+<h3 id="ACID中的C"><a href="#ACID中的C" class="headerlink" title="ACID中的C"></a>ACID中的C</h3><p>在数据库中，ACID是事务的基本性质。这里的一致性指的是：多个对象之间满足某种约束。</p>
 <p>比如说，数据库中对某张表T建了索引Index。那么对于T中的每行数据，Index中都要有且仅有一个对象指向该行数据，不能出现数据和索引之间的不一致。又比如，两个账户之间转账，数据库要保证两个账户的余额之和x+y保持在一个定值，钱不能凭空出现也不能消失。</p>
 <p>为了在事务的一致性和性能之间进行权衡，业界定义了各种不同的隔离级别。</p>
-<h3 id="分布式时钟带来的问题"><a href="#分布式时钟带来的问题" class="headerlink" title="分布式时钟带来的问题"></a>分布式时钟带来的问题</h3><p>分布式时钟目前有三种实现：TrueTime，HLC，TSO。这里我们不探讨它们的优劣和实现细节，只说明存在的问题。</p>
+<h2 id="分布式时钟带来的问题"><a href="#分布式时钟带来的问题" class="headerlink" title="分布式时钟带来的问题"></a>分布式时钟带来的问题</h2><p>分布式时钟目前有三种实现：TrueTime，HLC，TSO。这里我们不探讨它们的优劣和实现细节，只说明存在的问题。</p>
 <p>以HLC为例。典型的Share-nothing架构如下：</p>
 <pre><code class=" mermaid">architecture-beta
     group api(cloud)[Server]
@@ -861,21 +819,22 @@
 <p>我们假设最开始的时候，所有service的初始时间都是0。在真实时间real_time&#x3D;1的时刻，client向query1发送请求写入x&#x3D;10，假设x保存在storage1。在执行完成后，query1和storage1的HLC被推进到了hlc_time&#x3D;2。client立即查询x的值，这次client通过query2节点进行查询。query2节点的物理时钟出现了漂移，比client的时间落后，认为此时的real_time&#x3D;0。那么，query2就会使用hlc_time&#x3D;0时刻的快照进行查询。显然查询不到x的值，返回空。</p>
 <p>上面的过程是符合可串行化的。但是并不符合可线性化。设想这样一个场景，你在某某平台写了一篇文章，然后打电话给你的朋友让他帮忙转发，但是你的朋友和你说，他看不到这篇文章。</p>
 <p>在单机数据库中，不会有这个问题，时钟天然是递增的。分布式数据库中，因为分布式时钟不满足单调性，就会出现破坏外部一致性的情况。</p>
-<h2 id="其他隔离级别"><a href="#其他隔离级别" class="headerlink" title="其他隔离级别"></a>其他隔离级别</h2><p>除了SQL标准中提到的隔离级别和快照隔离之外，还有一些不太常见的隔离级别。</p>
+<h1 id="其他隔离级别"><a href="#其他隔离级别" class="headerlink" title="其他隔离级别"></a>其他隔离级别</h1><p>除了SQL标准中提到的隔离级别和快照隔离之外，还有一些不太常见的隔离级别。</p>
 <p>隔离级别本身就是在工程实践中，一致性和性能之间的权衡的结果。所以任何一个系统都可以实现自己特化的一个隔离级别，比如在图数据库中，就可以实现一个“边存在时点必须存在”这样的隔离级别。没有任何一个理论可以覆盖所有的隔离级别。</p>
 <p>下面介绍几个不太常见的隔离级别</p>
-<h3 id="Read-Atomic"><a href="#Read-Atomic" class="headerlink" title="Read Atomic"></a>Read Atomic</h3><p>Read Atomic是在SIGMOD2014的论文《Scalable Atomic Visibility with RAMP Transactions》中提出的，并且Meta把它应用到了TAO中《RAMP-TAO: Layering Atomic Transactions on Facebook’s Online TAO Data Store》。</p>
+<h2 id="Read-Atomic"><a href="#Read-Atomic" class="headerlink" title="Read Atomic"></a>Read Atomic</h2><p>Read Atomic是在SIGMOD2014的论文《Scalable Atomic Visibility with RAMP Transactions》中提出的，并且Meta把它应用到了TAO中《RAMP-TAO: Layering Atomic Transactions on Facebook’s Online TAO Data Store》。</p>
 <p>RA是针对分布式场景提出的隔离级别，它的写仍然需要2PC保证原子性。RA隔离级别还保证了读原子性：事务Ti的修改对另一个事务Tj，要么全可见，要么全不可见。比如，在任意时刻，不能出现A的好友里有B，但是B的好友里没有A这种情况。但是RA隔离级别不处理任何读&#x2F;写冲突。</p>
 <p>RAMP的核心思想是：给定ReadSet的情况下，通过两次读取，确定读到的数据版本。第一次读取，对ReadSet中的每个key，读取它的最新commit版本，获得一个Commit Version Set；第二次读取，对每个key，读取它在Commit Version Set中的最大版本。</p>
 <p>RAMP提出了三种算法，我们只是描述了RAMP-small算法，另外两种算法的核心思想基本一样，但是在工程上有一些优化。</p>
 <p>可以发现，RAMP事务需要事先确定ReadSet，并且ReadSet不宜过大，有一定的局限性。</p>
 <p>在LDBC定义的隔离级别中，Read Atomic位于如下位置：</p>
 <p><img src="https://fastly.jsdelivr.net/gh/bucketio/img7@main/2025/06/21/1750515220541-c71bd642-de32-4cc7-b3da-fb21c6def90f.png" srcset="/img/loading.gif" lazyload></p>
-<h3 id="Monotic-Atomic-View"><a href="#Monotic-Atomic-View" class="headerlink" title="Monotic Atomic View"></a>Monotic Atomic View</h3><p>MAV这个隔离级别建议看Jespen和《Weak Consistent》原文，我对MAV这个隔离级别也是一知半解，不给出具体的定义，避免影响对原文的理解。下面说说我对MAV的理解。</p>
+<h2 id="Monotic-Atomic-View"><a href="#Monotic-Atomic-View" class="headerlink" title="Monotic Atomic View"></a>Monotic Atomic View</h2><p>MAV这个隔离级别建议看Jespen和《Weak Consistent》原文，我对MAV这个隔离级别也是一知半解，不给出具体的定义，避免影响对原文的理解。下面说说我对MAV的理解。</p>
 <p>首先，需要明确一点RC隔离级别不提供实时性保证。读已提交保证的是“读到的必须是已经提交的数据”，而不是“已经提交的数据必须被读到”，因为RC并没有可线性化的约束。事务Ti提交之后在开始执行事务Tj，Tj可能读不到Ti写入的数据，这是完全符合RC的。</p>
 <p>那么，RC完全有可能出现这样一种情况：Ti写入了x&#x3D;10和y&#x3D;10，但是Tj读到了x&#x3D;10和y&#x3D;null。为了避免这种情况，提出了MAV隔离级别：在某一时刻，如果Tj读到了Ti提交的修改，那么在这之后Tj必须读到Ti的所有修改。</p>
 <p>感觉MAV比较像《Weak Consistent》中定义的PL-2L隔离级别。但是Jespen和LDBC中，MAV都是严格弱于RR和SI的。PL-2L并没有严格弱于RR。或许和《Weak Consistent》中定义的SI需要可线性化有关，需要进一步研究。</p>
-<h3 id="Cursor-Stability"><a href="#Cursor-Stability" class="headerlink" title="Cursor Stability"></a>Cursor Stability</h3><hr>
+<h2 id="Cursor-Stability"><a href="#Cursor-Stability" class="headerlink" title="Cursor Stability"></a>Cursor Stability</h2><p>TODO</p>
+<hr>
 <h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2>
                 
               </div>
@@ -893,7 +852,7 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>transaction-isolation-level</div>
+      <div>万字长文：事务隔离级别不完全总结</div>
       <div>http://example.com/2025/07/13/transaction-isolation-level/</div>
     </div>
     <div class="license-meta">

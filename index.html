@@ -61,7 +61,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0,"number":true,"expand":true,"style":"normal"},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -228,14 +228,14 @@
       <h2 class="index-header">
         
         <a href="/2025/07/13/transaction-isolation-level/" target="_self">
-          transaction-isolation-level
+          万字长文：事务隔离级别不完全总结
         </a>
       </h2>
 
       
       <a class="index-excerpt index-excerpt__noimg" href="/2025/07/13/transaction-isolation-level/" target="_self">
         <div>
-          万字长文：事务隔离级别不完全总结事务在数据库中扮演着重要角色。然而，SQL 标准中对事务隔离级别的定义却非常模糊且不完整。本文将基于几篇论文的内容，对隔离级别进行系统性的整理，提供清晰且准确的定义。 本文将按顺序介绍以下内容  SQL标准中的隔离级别 快照隔离 严格可串行化 其他隔离级别   SQL 标准中的隔离级别定义SQL标准中用自然语言定义了以下三种现象：  脏读（Dirty Read）：事
+          事务在数据库中扮演着重要角色。然而，SQL 标准中对事务隔离级别的定义却非常模糊且不完整。本文将基于几篇论文的内容，对隔离级别进行系统性的整理，提供清晰且准确的定义。 本文将按顺序介绍以下内容:  SQL标准中的隔离级别 快照隔离 严格可串行化 其他隔离级别   SQL 标准中的隔离级别定义SQL标准中用自然语言定义了以下三种现象：  脏读（Dirty Read）：事务 T1 修改了数据项 x，另
         </div>
       </a>
 
