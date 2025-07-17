@@ -28,9 +28,9 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://cangfengzhs.github.io/images/1.png">
 <meta property="og:image" content="http://cangfengzhs.github.io/images/2.png">
-<meta property="og:image" content="https://fastly.jsdelivr.net/gh/bucketio/img7@main/2025/06/21/1750515220541-c71bd642-de32-4cc7-b3da-fb21c6def90f.png">
+<meta property="og:image" content="http://cangfengzhs.github.io/images/3.png">
 <meta property="article:published_time" content="2025-07-13T15:15:54.000Z">
-<meta property="article:modified_time" content="2025-07-17T09:21:16.440Z">
+<meta property="article:modified_time" content="2025-07-17T09:31:20.393Z">
 <meta property="article:author" content="藏锋">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="http://cangfengzhs.github.io/images/1.png">
@@ -828,7 +828,7 @@
 <p>RAMP提出了三种算法，我们只是描述了RAMP-small算法，另外两种算法的核心思想基本一样，但是在工程上有一些优化。</p>
 <p>可以发现，RAMP事务需要事先确定ReadSet，并且ReadSet不宜过大，有一定的局限性。</p>
 <p>在LDBC定义的隔离级别中，Read Atomic位于如下位置：</p>
-<p><img src="https://fastly.jsdelivr.net/gh/bucketio/img7@main/2025/06/21/1750515220541-c71bd642-de32-4cc7-b3da-fb21c6def90f.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/images/3.png" srcset="/img/loading.gif" lazyload></p>
 <h2 id="Monotic-Atomic-View"><a href="#Monotic-Atomic-View" class="headerlink" title="Monotic Atomic View"></a>Monotic Atomic View</h2><p>MAV这个隔离级别建议看Jespen和《Weak Consistent》原文，我对MAV这个隔离级别也是一知半解，不给出具体的定义，避免影响对原文的理解。下面说说我对MAV的理解。</p>
 <p>首先，需要明确一点RC隔离级别不提供实时性保证。读已提交保证的是“读到的必须是已经提交的数据”，而不是“已经提交的数据必须被读到”，因为RC并没有可线性化的约束。事务Ti提交之后在开始执行事务Tj，Tj可能读不到Ti写入的数据，这是完全符合RC的。</p>
 <p>那么，RC完全有可能出现这样一种情况：Ti写入了x&#x3D;10和y&#x3D;10，但是Tj读到了x&#x3D;10和y&#x3D;null。为了避免这种情况，提出了MAV隔离级别：在某一时刻，如果Tj读到了Ti提交的修改，那么在这之后Tj必须读到Ti的所有修改。</p>
